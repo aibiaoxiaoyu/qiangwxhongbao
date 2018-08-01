@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "com.codeboy.qianghongbao"
+        applicationId "com.xiaoyutech.qiangwxhongbao"
         minSdkVersion 16
         targetSdkVersion 21
         versionCode 307

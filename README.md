@@ -1,23 +1,26 @@
-#微信抢红包外挂
+####微信抢红包外挂
+新版微信会话列表用的conversationWithAppBrandListView,会话里文字用的NoMeasuredTextview，故常用的查找找不见控件的
 
-#### 效果预览
+
+
+####效果预览
 ![](show_min.gif)
 
 
-##前言
+####前言
 一个开源的兴趣项目，只要是将整个核心抢红包的流程编写出来，至于再复杂的一些操作就没深入研究。当这个项目发布后，也是反应挺大的，很多网友也找到我了与交流，也有做淘宝的人给钱让我去增加一些功能，当然我是拒绝的。而本文通过抢红包这个示例去讲解AccessibilityService的用途，希望大家能举一反三去学习这个辅助服务的强大之处。
 
-##免责声明
+####免责声明
 本软件仅供学习使用，完全模拟人工操作，抢红包速度取决于你手机的性能与网络，不涉及任何第三方软件接口，本软件已开放源代码，无病毒、不收集用户隐私信息，禁止使用本软件参与赌博活动。一切因使用“Codeboy抢红包”造成的任何后果，Codeboy抢红包概不负责，亦不承担任何法律责任!
 
-##作者声明
+####作者声明
 在这里，我声明一下，我所做的是自己有兴趣的事情，只是通过开源的方式让大家去学习相关技术，并不是为了营利，而我也知道淘宝上有人直接拿我的应用去售卖，这些都是没经过我的允许，我也没有半点收益，我留下联系方式是为了方便开发者之间的讨论与学习，所以请商业合作的与小白不要加我QQ，谢谢。
 由于加我的人太多，大部分是咨询抢红包的事情，在这里也再声明一下，不再更新抢红包的工作，在这方面也不再想交流什么，如果你有什么好的idea（非红包方面），可以共同探讨。
 
-##技术详述
+####技术详述
 一开始大家都会觉得做一个Android外挂会汲取很多东西或者底层的东西,但当发现Android里有一个叫`AccessibilityService`的服务时，一切都变得很简单。
 
-###关于AccessibilityService
+####关于AccessibilityService
 
 先看看官网的介绍Accessibility  
 Many Android users have different abilities that require them to interact with their Android devices in different ways. These include users who have visual, physical or age-related limitations that prevent them from fully seeing or using a touchscreen, and users with hearing loss who may not be able to perceive audible information and alerts...
@@ -30,7 +33,7 @@ Many Android users have different abilities that require them to interact with t
 
 当然`accessibility`除了可以辅助点击界面的事件外，还可以用作自动化测试，或者一键返回，是一个非常强大与实用的功能，具体实例可以看我另一个App`虚拟按键助手` 请往下载 [GooglePlay市场](https://play.google.com/store/apps/details?id=com.leon.assistivetouch.main) 或 [应用宝](http://android.myapp.com/myapp/detail.htm?apkName=com.leon.assistivetouch.main)。
 
-###关于抢红包的流程
+####关于抢红包的流程
 在有以上的一些关于辅助服务的基础知识后，我们就可以分析怎样自动化抢红包。
 大家使用过微信都知道，如果不是在微信的可见界面范围（在桌面或者在使用其它应用时），在收到新的消息，就会在通知栏提醒用户。而在微信的消息列表界面，就不会弹出通知栏，所以可以区分这两种情况。然后抓取相关关键字作进一步处理。
 
@@ -50,7 +53,7 @@ Many Android users have different abilities that require them to interact with t
 
 ![](qianghongbao_3.jpg)
 
-###使用AccessibilityService去一步步监听微信的动作
+####使用AccessibilityService去一步步监听微信的动作
 1、新建一个继承`AccessibilityService`的类,如`QiangHongBaoService`，然后在`AndroidManifest.xml`里声明组件，如下
 
     <service
@@ -124,16 +127,17 @@ feedbackAllMask | 所有以上的反馈
 
 具体内容请看源码
 
-##其它
+####其它
 ####如何防止外挂
 在了解整个核心后,获取事件不外乎就是通过文本与id判断，那么就可以将文本改为图标方式，将id改为动态id(每次显示都是随机生成),这样一来就可以提高外挂的门槛。
 
-####如何发红包会安全点
+
+#### 如何发红包会安全点
 现在抢红包就看谁的外挂工具反应够快,如何去干扰这些外挂，其实也有点小技巧，就是在发红包前，发送文本`[微信红包]`,可以导致部分外挂工具失效。
 
 版本归作者所有,转载请注明出处:[http://www.happycodeboy.com/index.php/archives/10/](http://www.happycodeboy.com/index.php/archives/10/)
 
 
 
-##关于作者
+####关于作者
 英文名:cino<br>

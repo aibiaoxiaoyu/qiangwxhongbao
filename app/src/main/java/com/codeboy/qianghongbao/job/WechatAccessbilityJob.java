@@ -282,6 +282,8 @@ public class WechatAccessbilityJob extends BaseAccessbilityJob {
 
                 if (wechatVersion == 700) {
                     buttonId = "com.tencent.mm:id/b2c";
+                } else if (wechatVersion == 1321) {
+                    buttonId = "com.tencent.mm:id/c85";
                 }
 
                 if (buttonId != null) {
@@ -365,19 +367,19 @@ public class WechatAccessbilityJob extends BaseAccessbilityJob {
         Log.d(TAG, "handleChatListHongBao: 领取红包 size:" + (list == null ? 0 : list.size()));
         if (list != null && list.isEmpty()) {
             // 从消息列表查找红包
-            AccessibilityNodeInfo node = AccessibilityHelper.findNodeInfosByTexts(nodeInfo, "微信红包", "恭喜发财");
+            AccessibilityNodeInfo node = AccessibilityHelper.findNodeInfosByTexts(nodeInfo, "[微信红包]");
             if (node == null) {
-                node = AccessibilityHelper.findNodeInfosById(nodeInfo, "com.tencent.mm:id/as8", "微信红包");
+                node = AccessibilityHelper.findNodeInfosById(nodeInfo, "com.tencent.mm:id/as8", "[微信红包]");
             }
-            Log.d(TAG, "handleChatListHongBao: \"微信红包\", \"恭喜发财\" node is null:" + (node == null));
+            Log.d(TAG, "handleChatListHongBao: [微信红包] node is null:" + (node == null));
             if (node != null) {
                 if (BuildConfig.DEBUG) {
-                    Log.e(TAG, "-->微信红包:" + node);
+                    Log.e(TAG, "-->[微信红包]:" + node);
                 }
                 isReceivingHongbao = true;
-               if( nodeInfo.isClickable()){
-                   AccessibilityHelper.performClick(nodeInfo);
-               }
+//                if (nodeInfo.isClickable()) {
+                    AccessibilityHelper.performClick(node);
+//                }
             }
         } else if (list != null) {
             if (!list.isEmpty()) {

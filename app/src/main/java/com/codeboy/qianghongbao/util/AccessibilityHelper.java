@@ -17,22 +17,26 @@ import java.util.List;
  */
 public final class AccessibilityHelper {
 
-    private AccessibilityHelper() {}
+    private AccessibilityHelper() {
+    }
 
-    /** 通过id查找*/
+    /**
+     * 通过id查找
+     */
     public static AccessibilityNodeInfo findNodeInfosById(AccessibilityNodeInfo nodeInfo, String resId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId(resId);
-            if(list != null && !list.isEmpty()) {
+            if (list != null && !list.isEmpty()) {
                 return list.get(0);
             }
         }
         return null;
     }
-    public static AccessibilityNodeInfo findNodeInfosById(AccessibilityNodeInfo nodeInfo, String resId,String text) {
+
+    public static AccessibilityNodeInfo findNodeInfosById(AccessibilityNodeInfo nodeInfo, String resId, String text) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId(resId);
-            if(list != null && !list.isEmpty()) {
+            if (list != null && !list.isEmpty()) {
                 for (AccessibilityNodeInfo temp : list) {
                     if (temp.getText() != null) {
                         String str = temp.getText().toString();
@@ -40,59 +44,63 @@ public final class AccessibilityHelper {
                             return temp;
                         }
                     }
-                    if (text.equals(findNodeInfosByText(temp, text))) {
-                        return temp;
-                    }
                 }
-                return list.get(0);
             }
         }
-        return null;
+        return findNodeInfosByText(nodeInfo, text);
     }
 
-    /** 通过文本查找*/
+    /**
+     * 通过文本查找
+     */
     public static AccessibilityNodeInfo findNodeInfosByText(AccessibilityNodeInfo nodeInfo, String text) {
         List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByText(text);
-        if(list == null || list.isEmpty()) {
+        if (list == null || list.isEmpty()) {
             return null;
         }
         return list.get(0);
     }
 
-    /** 通过关键字查找*/
+    /**
+     * 通过关键字查找
+     */
     public static AccessibilityNodeInfo findNodeInfosByTexts(AccessibilityNodeInfo nodeInfo, String... texts) {
-        for(String key : texts) {
+        for (String key : texts) {
             AccessibilityNodeInfo info = findNodeInfosByText(nodeInfo, key);
-            if(info != null) {
+            if (info != null) {
                 return info;
             }
         }
         return null;
     }
 
-    /** 通过组件名字查找*/
+    /**
+     * 通过组件名字查找
+     */
     public static AccessibilityNodeInfo findNodeInfosByClassName(AccessibilityNodeInfo nodeInfo, String className) {
-        if(TextUtils.isEmpty(className)) {
+        if (TextUtils.isEmpty(className)) {
             return null;
         }
         for (int i = 0; i < nodeInfo.getChildCount(); i++) {
             AccessibilityNodeInfo node = nodeInfo.getChild(i);
-            if(className.equals(node.getClassName())) {
+            if (className.equals(node.getClassName())) {
                 return node;
             }
         }
         return null;
     }
 
-    /** 找父组件*/
+    /**
+     * 找父组件
+     */
     public static AccessibilityNodeInfo findParentNodeInfosByClassName(AccessibilityNodeInfo nodeInfo, String className) {
-        if(nodeInfo == null) {
+        if (nodeInfo == null) {
             return null;
         }
-        if(TextUtils.isEmpty(className)) {
+        if (TextUtils.isEmpty(className)) {
             return null;
         }
-        if(className.equals(nodeInfo.getClassName())) {
+        if (className.equals(nodeInfo.getClassName())) {
             return nodeInfo;
         }
         return findParentNodeInfosByClassName(nodeInfo.getParent(), className);
@@ -111,8 +119,8 @@ public final class AccessibilityHelper {
         sSourceNodeField = field;
     }
 
-    public static long getSourceNodeId (AccessibilityNodeInfo nodeInfo) {
-        if(sSourceNodeField == null) {
+    public static long getSourceNodeId(AccessibilityNodeInfo nodeInfo) {
+        if (sSourceNodeField == null) {
             return -1;
         }
         try {
@@ -124,34 +132,42 @@ public final class AccessibilityHelper {
     }
 
     public static String getViewIdResourceName(AccessibilityNodeInfo nodeInfo) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            return nodeInfo.getViewIdResourceName();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                return nodeInfo.getViewIdResourceName();
+            }
         }
         return null;
     }
 
-    /** 返回主界面事件*/
+    /**
+     * 返回主界面事件
+     */
     public static void performHome(AccessibilityService service) {
-        if(service == null) {
+        if (service == null) {
             return;
         }
         service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
     }
 
-    /** 返回事件*/
+    /**
+     * 返回事件
+     */
     public static void performBack(AccessibilityService service) {
-        if(service == null) {
+        if (service == null) {
             return;
         }
         service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
-    /** 点击事件*/
+    /**
+     * 点击事件
+     */
     public static void performClick(AccessibilityNodeInfo nodeInfo) {
-        if(nodeInfo == null) {
+        if (nodeInfo == null) {
             return;
         }
-        if(nodeInfo.isClickable()) {
+        if (nodeInfo.isClickable()) {
             nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         } else {
             performClick(nodeInfo.getParent());
