@@ -1,13 +1,11 @@
-#CodeBoy微信抢红包外挂
+#微信抢红包外挂
 
 #### 效果预览
 ![](show_min.gif)
 
-####源码下载地址:[https://github.com/lendylongli/qianghongbao](https://github.com/lendylongli/qianghongbao)
-####apk下载地址 : <a href="http://t.cn/RbrdRHe" target="_blank">下载最新版本</a>
 
 ##前言
-Codeboy抢红包是我在2015年春节过年期间编写的一个开源的兴趣项目，只要是将整个核心抢红包的流程编写出来，至于再复杂的一些操作就没深入研究。当这个项目发布后，也是反应挺大的，很多网友也找到我了与交流，也有做淘宝的人给钱让我去增加一些功能，当然我是拒绝的。而本文通过抢红包这个示例去讲解AccessibilityService的用途，希望大家能举一反三去学习这个辅助服务的强大之处。
+一个开源的兴趣项目，只要是将整个核心抢红包的流程编写出来，至于再复杂的一些操作就没深入研究。当这个项目发布后，也是反应挺大的，很多网友也找到我了与交流，也有做淘宝的人给钱让我去增加一些功能，当然我是拒绝的。而本文通过抢红包这个示例去讲解AccessibilityService的用途，希望大家能举一反三去学习这个辅助服务的强大之处。
 
 ##免责声明
 本软件仅供学习使用，完全模拟人工操作，抢红包速度取决于你手机的性能与网络，不涉及任何第三方软件接口，本软件已开放源代码，无病毒、不收集用户隐私信息，禁止使用本软件参与赌博活动。一切因使用“Codeboy抢红包”造成的任何后果，Codeboy抢红包概不负责，亦不承担任何法律责任!
@@ -135,16 +133,7 @@ feedbackAllMask | 所有以上的反馈
 
 版本归作者所有,转载请注明出处:[http://www.happycodeboy.com/index.php/archives/10/](http://www.happycodeboy.com/index.php/archives/10/)
 
-##打赏作者
-如果你觉得这篇文章或源码对你有帮助又或者你使用Codeboy抢红包包感觉很爽，可以打赏作者作为鼓励哦~
 
-###支付宝
-![](alipay.png)
-
-###微信扫一扫
-![](wechatpay.jpg)
 
 ##关于作者
-英文名:Leon<br>
-个人博客:[http://www.happycodeboy.com](http://www.happycodeboy.com)<br>
-Email:codeboy2013@gmail.com<br>
+英文名:cino<br>
