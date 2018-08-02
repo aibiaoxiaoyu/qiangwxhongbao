@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class QiangHongBaoService extends AccessibilityService {
 
-    private static final String TAG = "QiangHongBao";
+    private static final String TAG = "QiangHongBaoService";
 
     private static final Class[] ACCESSBILITY_JOBS= {
             WechatAccessbilityJob.class,
@@ -41,7 +41,7 @@ public class QiangHongBaoService extends AccessibilityService {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Log.d(TAG, "qianghongbao service onCreate");
         mAccessbilityJobs = new ArrayList<>();
         mPkgAccessbilityJobMap = new HashMap<>();
 
